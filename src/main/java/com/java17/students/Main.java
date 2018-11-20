@@ -11,7 +11,7 @@ public class Main {
         Student st = new Student(null, "Marian", "Kowalski", "123");
 
         StudentDao studentDao = new StudentDao();
-        studentDao.saveStudentIntoDataBase(st);
+        //studentDao.saveStudentIntoDataBase(st);
         System.out.println(studentDao.getAllStudentsFromDataBase());
 
         Scanner scanner = new Scanner(System.in);
@@ -32,10 +32,10 @@ public class Main {
                 String indeks = scanner.nextLine();
 
                 studentDao.saveStudentIntoDataBase(new Student(null, imie, nazwisko, indeks));
-            } else {
-                break;
             }
+
         } while (!odczyt.equals("exit"));
+        System.exit(0);
     }
 
 }

@@ -15,7 +15,7 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     // identity - pobiera id, nastęonir przyjmuje wartość
-    //
+
     private Long id;
 
     private String imie;

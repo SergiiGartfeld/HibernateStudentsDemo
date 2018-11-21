@@ -16,6 +16,9 @@ public class StudentDao {
         Transaction transaction = null;
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
+            for(Ocena oc: student.getOceny()){
+                session.save(oc);
+            }
             session.save(student);
             //zamyka transak i zatwierdza zmiany
             transaction.commit();

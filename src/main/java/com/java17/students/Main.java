@@ -14,8 +14,13 @@ public class Main {
         Student st = new Student(null, "Marian", "Kowalski", "123", null);
 
         StudentDao studentDao = new StudentDao();
-        //studentDao.saveStudentIntoDataBase(st);
-        System.out.println(studentDao.getAllStudentsFromDataBase());
+//<<<<<<< HEAD
+//        //studentDao.saveStudentIntoDataBase(st);
+//        System.out.println(studentDao.getAllStudentsFromDataBase());
+//=======
+//       // studentDao.saveStudentIntoDataBase(st);
+//       // System.out.println(studentDao.getAllStudentsFromDataBase());
+//>>>>>>> 273db36698430f173362439d4633e410aa93e18a
 
         Scanner scanner = new Scanner(System.in);
 

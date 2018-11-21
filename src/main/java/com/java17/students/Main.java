@@ -42,16 +42,21 @@ public class Main {
                 System.out.println("Podaj ilość ocen: ");
                 int iloscOcen = scanDlaOcen.nextInt();
                 List<Ocena>ocenaList = new ArrayList<>();
+                Student student = new Student();
                 for(int i = 0; i<iloscOcen; i++){
                     System.out.println("Podaj nazwę przedmiotu: ");
                     Przedmiot przedmiot = Przedmiot.valueOf(scanner.nextLine());
 
                     System.out.println("Podaj ocenę: ");
                     int ocena = scanDlaOcen.nextInt();
-                    ocenaList.add(new Ocena(null, ocena, przedmiot, null));
+                    ocenaList.add(new Ocena(null, ocena, przedmiot, student));
                 }
+                student.setImie(imie);
+                student.setNazwisko(nazwisko);
+                student.setIndeks(indeks);
+                student.setOceny(ocenaList);
 
-                studentDao.saveStudentIntoDataBase(new Student(null, imie, nazwisko, indeks, ocenaList));
+                studentDao.saveStudentIntoDataBase(student);
             }
 
         } while (!odczyt.equals("exit"));

@@ -7,6 +7,7 @@ import java.util.List;
 
 @Entity
 @Data
+
 @AllArgsConstructor
 @NoArgsConstructor
 
@@ -17,13 +18,13 @@ public class Student extends BaseEntity {
     //
     private Long id;
 
-    @Column(name = "name")
+
     private String imie;
 
-    @Column(name = "surname")
+
     private String nazwisko;
 
-    @Column(name = "indeksik")
+
     private String indeks;
 
     @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)

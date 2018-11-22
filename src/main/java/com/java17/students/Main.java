@@ -14,23 +14,17 @@ public class Main {
         Student st = new Student(null, "Marian", "Kowalski", "123", null);
 
         StudentDao studentDao = new StudentDao();
-//<<<<<<< HEAD
-//        //studentDao.saveStudentIntoDataBase(st);
-//        System.out.println(studentDao.getAllStudentsFromDataBase());
-//=======
-//       // studentDao.saveStudentIntoDataBase(st);
-//       // System.out.println(studentDao.getAllStudentsFromDataBase());
-//>>>>>>> 273db36698430f173362439d4633e410aa93e18a
+
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("wpisz  co chcesz zrobić: \n  dodaj \n  listuj \n  exit");
+        System.out.println("wpisz  co chcesz zrobić: \n  dodaj \n  listuj \n pobierz \n usuń \n  exit");
         String odczyt;
         Scanner scanDlaOcen = new Scanner(System.in);
         do {
             odczyt = scanner.nextLine();
             if (odczyt.equals("listuj")) {
-                studentDao.getAllStudentsFromDataBase().stream().forEach(System.out::println);
+                System.out.println(studentDao.getAllStudentsFromDatabase());
             } else if (odczyt.equals("dodaj")) {
                 System.out.println("podaj imie");
                 String imie = scanner.nextLine();
@@ -56,12 +50,33 @@ public class Main {
                 student.setIndeks(indeks);
                 student.setOceny(ocenaList);
 
-                studentDao.saveStudentIntoDataBase(student);
+                studentDao.saveStudentWithGradesIntoDb(student);
+            } else if(odczyt.equals("pobierz")){
+                System.out.println("ile uzytkowników? :");
+                int liczba = scanDlaOcen.nextInt();
+                if(liczba==1) {
+                    System.out.println("wpisz id");
+                    Long id = scanner.nextLong();
+                    System.out.println(studentDao.getById(id));
+                } else if(liczba>1){
+                    List<Long>listOfIds = new ArrayList<>();
+                    for(int i = 0; i<liczba; i++){
+                        System.out.println("Podaj id:");
+                        Long id = scanner.nextLong();
+                        listOfIds.add(id);
+
+                    }
+                    System.out.println(studentDao.getById(listOfIds));
+                }
+            } else if(odczyt.equals("usuń")){
+                System.out.println("podaj id studenta");
+                Long id = scanDlaOcen.nextLong();
+                studentDao.removeById(id);
             }
 
         } while (!odczyt.equals("exit"));
         System.exit(0);
-        //albo
+
     }
 
 }

@@ -3,12 +3,14 @@ package com.java17.students;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
 
 @Entity
 @Data
+@ToString(exclude = {"student"})
 @AllArgsConstructor
 @NoArgsConstructor
 public class Ocena extends BaseEntity {
@@ -17,6 +19,8 @@ public class Ocena extends BaseEntity {
     private Long id;
 
     private Integer ocena;
+
+    @Enumerated(value =  EnumType.STRING)
     private Przedmiot przedmiot;
 
     @ManyToOne(fetch = FetchType.LAZY)

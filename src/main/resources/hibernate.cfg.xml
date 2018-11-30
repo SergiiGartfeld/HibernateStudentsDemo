@@ -13,6 +13,7 @@
     <property name="dialect">org.hibernate.dialect.MySQL57Dialect</property>
     <mapping class="com.java17.students.Student"/>
     <mapping class="com.java17.students.Ocena"/>
+    <mapping class="com.java17.students.Teacher"/>
 
 </session-factory>
 </hibernate-configuration>

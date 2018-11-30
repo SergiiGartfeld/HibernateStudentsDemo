@@ -10,7 +10,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-
+@ToString(exclude = {"teachers"})
 public class Student extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,5 +29,8 @@ public class Student extends BaseEntity {
 
     @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
     private List<Ocena>oceny;
+
+    @ManyToMany(mappedBy = "students",fetch = FetchType.LAZY)
+    private List<Teacher> teachers;
 
 }

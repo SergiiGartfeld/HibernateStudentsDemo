@@ -11,21 +11,21 @@ import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
-        Student st = new Student(null, "Marian", "Kowalski", "123", null);
+        Student st = new Student(null, "Marian", "Kowalski", "123", null, null);
 
         StudentDao studentDao = new StudentDao();
 
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("wpisz  co chcesz zrobić: \n  dodaj \n  listuj \n pobierz \n usuń \n  exit");
+        System.out.println("wpisz  co chcesz zrobić: \n * dodaj studenta \n * dodaj nauczyciela \n * dodaj nauczyciela studentowi \n * listuj \n * listuj naucz \n * pobierz \n * usuń \n * exit");
         String odczyt;
         Scanner scanDlaOcen = new Scanner(System.in);
         do {
             odczyt = scanner.nextLine();
             if (odczyt.equals("listuj")) {
                 System.out.println(studentDao.getAllStudentsFromDatabase());
-            } else if (odczyt.equals("dodaj")) {
+            } else if (odczyt.equals("dodaj studenta")) {
                 System.out.println("podaj imie");
                 String imie = scanner.nextLine();
                 System.out.println("podaj nazwisko");
@@ -49,6 +49,7 @@ public class Main {
                 student.setNazwisko(nazwisko);
                 student.setIndeks(indeks);
                 student.setOceny(ocenaList);
+                student.setTeachers(new ArrayList<>());
 
                 studentDao.saveStudentWithGradesIntoDb(student);
             } else if(odczyt.equals("pobierz")){
@@ -72,6 +73,24 @@ public class Main {
                 System.out.println("podaj id studenta");
                 Long id = scanDlaOcen.nextLong();
                 studentDao.removeById(id);
+            } else if(odczyt.equals("dodaj nauczyciela")){
+                System.out.println("podaj imie");
+                String imie = scanner.nextLine();
+                System.out.println("podaj nazwisko");
+                String nazwisko = scanner.nextLine();
+
+
+                Teacher teacher = new Teacher(null,imie,nazwisko,new ArrayList<>());
+                studentDao.saveIntoDb(teacher);
+            } else if(odczyt.equals("listuj naucz")){
+                System.out.println(studentDao.getAllTeacherFromDatabase());
+
+            } else if(odczyt.equals("dodaj nauczyciela studentowi")){
+                System.out.println("podaj id nauczyciela: ");
+                Long idTeach = scanDlaOcen.nextLong();
+                System.out.println("podaj id studenta: ");
+                Long idStud = scanDlaOcen.nextLong();
+                studentDao.addTeacherToStudent(idTeach,idStud);
             }
 
         } while (!odczyt.equals("exit"));
